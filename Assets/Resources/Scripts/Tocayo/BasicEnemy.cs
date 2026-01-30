@@ -36,9 +36,34 @@ public class BasicEnemy : MonoBehaviour
             m_direction *= -1f;
         }
 
-        if (m_target) { m_state = STATE.ATTACK; }
+        bool seeTarget = InLineOfSight();
+        if (m_target && InLineOfSight()) { m_state = STATE.ATTACK; }
         
         MoveForward();
+    }
+
+    /// <summary>
+    /// Check if the target is in line of sight.
+    /// </summary>
+    /// <returns>Wether the line is clear or not.</returns>
+    private bool InLineOfSight()
+    {
+        // if there is no target to seek, ignore.
+        if (!m_target) {
+            return false;
+        }
+
+        // shoot the raycast towards the target.
+        Vector2 direction = (m_target.position - transform.position).normalized;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position,
+                                             direction,
+                                             m_sightRange,
+                                             ~m_enemyLayer);
+
+        if (hit.collider && hit.collider.CompareTag("Player")) {
+            return true;
+        }
+        return false;
     }
 
     /// <summary>
@@ -95,9 +120,6 @@ public class BasicEnemy : MonoBehaviour
         Vector2 origin = transform.position;
         origin.x += m_forwardCheckDistance * m_direction;
 
-        m_mrStart.transform.position = origin;
-        m_mrEnd.transform.position = origin + (Vector2.down * m_groundCheckDist);
-
         return Physics2D.Raycast(origin,
                                  Vector2.down,
                                  m_downCheckDistance,
@@ -124,6 +146,7 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField] private Transform m_feet;
     [SerializeField] private float m_groundCheckDist;
     [SerializeField] private LayerMask m_groundLayer; // temporary variable for ground testing.
+    [SerializeField] private LayerMask m_enemyLayer; // temporary layer to prevent raycasts from colliding with self.
 
     // VISUAL TESTING
     [SerializeField] private GameObject m_mrStart;
