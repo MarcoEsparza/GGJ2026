@@ -43,13 +43,40 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MaskSelection",
+                    "name": "MonkeyMask",
                     "type": "Button",
-                    "id": "27416e73-c704-4c4f-a19d-2771b2c35057",
+                    "id": "452fc9ad-b5c3-4bb5-8159-591e02734098",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "JaguarMask",
+                    "type": "Button",
+                    "id": "43d5c9ae-ce66-4df6-8169-a2dcff02c60a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AxolotlMask",
+                    "type": "Button",
+                    "id": "5bec7f10-92ea-4773-902d-72b949570f89",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Climb",
+                    "type": "Value",
+                    "id": "ceab358c-7eee-4026-910f-1e5d40f1d81e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -143,36 +170,69 @@
                 },
                 {
                     "name": "",
-                    "id": "8a428b70-4230-4d8c-bf5b-299c9a6ebb54",
+                    "id": "0212d3bf-90ce-4a93-afb4-38146cdce69a",
                     "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MaskSelection",
+                    "action": "MonkeyMask",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "eee2e60f-8acb-4f32-b744-d93a2f14b290",
+                    "id": "9bccd173-cc76-4d2d-9c01-db388017b3c9",
                     "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MaskSelection",
+                    "action": "JaguarMask",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "fe11eb40-75e3-4dd4-a304-78c8058133a8",
+                    "id": "2a64a8ff-7d84-4a14-b735-c175491db8dc",
                     "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MaskSelection",
+                    "action": "AxolotlMask",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "6146f0e8-dc02-4023-82b1-43657befdea8",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Climb",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "dd73076f-5bce-4a47-b74d-efaa481f2b70",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Climb",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "5d8ab148-6974-4034-a05e-104f0279ad49",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Climb",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

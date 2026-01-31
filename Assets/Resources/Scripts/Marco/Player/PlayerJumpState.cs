@@ -54,5 +54,9 @@ public class PlayerJumpState : IState
         {
             m_stateMachine.ChangeState("Idle");
         }
+        else if(m_playerController.CheckClimbActivation() && !m_playerController.IsJumping)
+        {
+            m_stateMachine.ChangeState("Climb");
+        }
     }
 }
