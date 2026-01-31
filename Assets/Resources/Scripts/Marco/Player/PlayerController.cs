@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_jaguarSpeed = 8.0f;
     [SerializeField] private float m_monkeyJumpBoost = 10.0f;
     [SerializeField] private float m_climbSpeed = 3.0f;
+    [SerializeField] private float m_abilityCooldown = 1.0f;
+    [SerializeField] private float m_monkeyBoostDuration = 2.0f;
 
     [Header("GroundCheck")]
     [SerializeField] private Transform m_groundCheck;
@@ -45,14 +47,22 @@ public class PlayerController : MonoBehaviour
     private bool m_isJumping = false;
     private bool m_touchingWallLeft = false;
     private bool m_touchingWallRight = false;
-    private float m_wallJumpTimer = 0.0f;
+    private bool m_isWallJumping = false;
     private bool m_isLookingRight = true;
     private bool m_canClimb = false;
+    private bool m_useAbility = false;
+    private bool m_canUseAbility = true;
+    private bool m_usingMonkeyAbility = false;
+
+    private float m_wallJumpTimer = 0.0f;
+    private float m_abilityTimer = 0.0f;
+    private float m_monkeyAbilityTimer = 0.0f;
 
     public bool IsGrounded { get { return m_isGrounded; } }
     public Vector2 MovementInput { get { return m_movementInput; } }
     public bool IsJumping { get { return m_isJumping; } }
     public Rigidbody2D PlayerRB { get { return m_rb; } }
+    public bool IsWallJumping { get { return m_isWallJumping; } }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -71,6 +81,33 @@ public class PlayerController : MonoBehaviour
             {
                 m_canClimb = false;
             }
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("ClimbableWall"))
+        {
+            if (m_currentMask == PlayerMask.Monkey)
+            {
+                m_canClimb = true;
+            }
+            else
+            {
+                m_canClimb = false;
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("NormalWall"))
+        {
+            m_canClimb = false;
+        }
+        if (collision.gameObject.CompareTag("ClimbableWall"))
+        {
+            m_canClimb = false;
         }
     }
 
@@ -95,6 +132,33 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         m_stateMachine.CurrentState.OnExecuteState();
+
+        if (m_isWallJumping)
+        {
+            m_wallJumpTimer += Time.deltaTime;
+            if (m_wallJumpTimer >= m_wallJumpDuration)
+            {
+                m_isWallJumping = false;
+                m_wallJumpTimer = 0.0f;
+            }
+        }
+
+        m_abilityTimer += Time.deltaTime;
+        if (m_abilityTimer >= m_abilityCooldown)
+        {
+            m_canUseAbility = true;
+            m_abilityTimer = 0.0f;
+        }
+
+        if(m_usingMonkeyAbility)
+        {
+            m_monkeyAbilityTimer += Time.deltaTime;
+            if(m_monkeyAbilityTimer >= m_monkeyBoostDuration)
+            {
+                m_usingMonkeyAbility = false;
+                m_monkeyAbilityTimer = 0.0f;
+            }
+        }
 
         if (m_movementInput.x < 0.0f && m_isLookingRight)
         {
@@ -164,48 +228,48 @@ public class PlayerController : MonoBehaviour
         m_inputActions.Player.MonkeyMask.performed += ctx => m_currentMask = PlayerMask.Monkey;
         m_inputActions.Player.JaguarMask.performed += ctx => m_currentMask = PlayerMask.Jaguar;
         m_inputActions.Player.AxolotlMask.performed += ctx => m_currentMask = PlayerMask.Axolotl;
+        m_inputActions.Player.MaskAbilitie.performed += ctx => m_useAbility = true;
+        m_inputActions.Player.MaskAbilitie.canceled += ctx => m_useAbility = false;
     }
 
     public void Movement()
     {
+        if(m_isWallJumping)
+        {
+            return;
+        }
+
         float additionalVel = 0.0f;
         if(m_currentMask == PlayerMask.Jaguar)
         {
             additionalVel = m_jaguarSpeed;
         }
 
-        float horizontalVelocity = m_movementInput.x * (additionalVel + m_moveSpeed);
+        float controllFactor = m_isGrounded ? 1.0f : m_airControll;
+        float horizontalVelocity = (m_movementInput.x * (additionalVel + m_moveSpeed)) * controllFactor;
         m_rb.linearVelocity = new Vector2(horizontalVelocity, m_rb.linearVelocity.y);
     }
 
     public void Jumping()
     {
-        //float additionalJump = 0.0f;
-        //if(m_currentMask == PlayerMask.Monkey)
-        //{
-        //    additionalJump = m_monkeyJumpBoost;
-        //}
-        //float totalJumpForce = m_jumpForce + additionalJump;
+        float additionalJump = 0.0f;
+        if(m_currentMask == PlayerMask.Monkey && m_canUseAbility && m_useAbility)
+        {
+            additionalJump = m_monkeyJumpBoost;
+        }
+        float totalJumpForce = m_jumpForce + additionalJump;
 
         if (m_isGrounded && m_isJumping)
         {
-            m_rb.linearVelocity = new Vector2(m_rb.linearVelocity.x, m_jumpForce);
+            m_rb.linearVelocity = new Vector2(m_rb.linearVelocity.x, totalJumpForce);
         }
         else if(CheckClimbActivation() && m_isJumping)
         {
-            //if (m_touchingWallLeft)
-            //{
-            //    m_rb.linearVelocity = new Vector2(m_wallJumpForce.x, m_wallJumpForce.y);
-            //}
-            //else if (m_touchingWallRight)
-            //{
-            //    m_rb.linearVelocity = new Vector2(-m_wallJumpForce.x, m_wallJumpForce.y);
-            //}
-
-            //m_rb.gravityScale = m_gravityScale;
+            m_rb.gravityScale = m_gravityScale;
+            m_isWallJumping = true;
+            m_wallJumpTimer = 0.0f;
             int direction = m_touchingWallLeft ? 1 : -1;
             m_rb.linearVelocity = new Vector2(direction * m_wallJumpForce.x, m_wallJumpForce.y);
-
         }
     }
 
@@ -228,8 +292,8 @@ public class PlayerController : MonoBehaviour
         }
         else if ((m_touchingWallLeft || m_touchingWallRight) && m_canClimb)
         {
-            m_rb.gravityScale = 0.0f;
-            m_rb.linearVelocityY = 0.0f;
+            //m_rb.gravityScale = 0.0f;
+            //m_rb.linearVelocityY = 0.0f;
             return true;
         }
 

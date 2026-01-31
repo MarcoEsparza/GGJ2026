@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &186483795
 Transform:
   m_ObjectHideFlags: 0
@@ -703,6 +703,7 @@ MonoBehaviour:
   m_jaguarSpeed: 3
   m_monkeyJumpBoost: 4
   m_climbSpeed: 3
+  m_abilitieCooldown: 1
   m_groundCheck: {fileID: 1888751569}
   m_groundRadius: 0.45
   m_groundLayer:
@@ -1316,7 +1317,7 @@ GameObject:
   - component: {fileID: 1232927247}
   - component: {fileID: 1232927246}
   - component: {fileID: 1232927248}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CWall
   m_TagString: ClimbableWall
   m_Icon: {fileID: 0}
@@ -1456,7 +1457,7 @@ GameObject:
   - component: {fileID: 1265966093}
   - component: {fileID: 1265966092}
   - component: {fileID: 1265966091}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NWall
   m_TagString: NormalWall
   m_Icon: {fileID: 0}
@@ -1696,7 +1697,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1788992730
 Transform:
   m_ObjectHideFlags: 0
