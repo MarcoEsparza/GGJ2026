@@ -129,13 +129,40 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MaskSelection"",
+                    ""name"": ""MonkeyMask"",
                     ""type"": ""Button"",
-                    ""id"": ""27416e73-c704-4c4f-a19d-2771b2c35057"",
+                    ""id"": ""452fc9ad-b5c3-4bb5-8159-591e02734098"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""JaguarMask"",
+                    ""type"": ""Button"",
+                    ""id"": ""43d5c9ae-ce66-4df6-8169-a2dcff02c60a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AxolotlMask"",
+                    ""type"": ""Button"",
+                    ""id"": ""5bec7f10-92ea-4773-902d-72b949570f89"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Climb"",
+                    ""type"": ""Value"",
+                    ""id"": ""ceab358c-7eee-4026-910f-1e5d40f1d81e"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -229,36 +256,69 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8a428b70-4230-4d8c-bf5b-299c9a6ebb54"",
+                    ""id"": ""0212d3bf-90ce-4a93-afb4-38146cdce69a"",
                     ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MaskSelection"",
+                    ""action"": ""MonkeyMask"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""eee2e60f-8acb-4f32-b744-d93a2f14b290"",
+                    ""id"": ""9bccd173-cc76-4d2d-9c01-db388017b3c9"",
                     ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MaskSelection"",
+                    ""action"": ""JaguarMask"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""fe11eb40-75e3-4dd4-a304-78c8058133a8"",
+                    ""id"": ""2a64a8ff-7d84-4a14-b735-c175491db8dc"",
                     ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MaskSelection"",
+                    ""action"": ""AxolotlMask"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""6146f0e8-dc02-4023-82b1-43657befdea8"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Climb"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""dd73076f-5bce-4a47-b74d-efaa481f2b70"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Climb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""5d8ab148-6974-4034-a05e-104f0279ad49"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Climb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -271,7 +331,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_MaskAbilitie = m_Player.FindAction("MaskAbilitie", throwIfNotFound: true);
-        m_Player_MaskSelection = m_Player.FindAction("MaskSelection", throwIfNotFound: true);
+        m_Player_MonkeyMask = m_Player.FindAction("MonkeyMask", throwIfNotFound: true);
+        m_Player_JaguarMask = m_Player.FindAction("JaguarMask", throwIfNotFound: true);
+        m_Player_AxolotlMask = m_Player.FindAction("AxolotlMask", throwIfNotFound: true);
+        m_Player_Climb = m_Player.FindAction("Climb", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -356,7 +419,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_MaskAbilitie;
-    private readonly InputAction m_Player_MaskSelection;
+    private readonly InputAction m_Player_MonkeyMask;
+    private readonly InputAction m_Player_JaguarMask;
+    private readonly InputAction m_Player_AxolotlMask;
+    private readonly InputAction m_Player_Climb;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -385,9 +451,21 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @MaskAbilitie => m_Wrapper.m_Player_MaskAbilitie;
         /// <summary>
-        /// Provides access to the underlying input action "Player/MaskSelection".
+        /// Provides access to the underlying input action "Player/MonkeyMask".
         /// </summary>
-        public InputAction @MaskSelection => m_Wrapper.m_Player_MaskSelection;
+        public InputAction @MonkeyMask => m_Wrapper.m_Player_MonkeyMask;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/JaguarMask".
+        /// </summary>
+        public InputAction @JaguarMask => m_Wrapper.m_Player_JaguarMask;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/AxolotlMask".
+        /// </summary>
+        public InputAction @AxolotlMask => m_Wrapper.m_Player_AxolotlMask;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Climb".
+        /// </summary>
+        public InputAction @Climb => m_Wrapper.m_Player_Climb;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -426,9 +504,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @MaskAbilitie.started += instance.OnMaskAbilitie;
             @MaskAbilitie.performed += instance.OnMaskAbilitie;
             @MaskAbilitie.canceled += instance.OnMaskAbilitie;
-            @MaskSelection.started += instance.OnMaskSelection;
-            @MaskSelection.performed += instance.OnMaskSelection;
-            @MaskSelection.canceled += instance.OnMaskSelection;
+            @MonkeyMask.started += instance.OnMonkeyMask;
+            @MonkeyMask.performed += instance.OnMonkeyMask;
+            @MonkeyMask.canceled += instance.OnMonkeyMask;
+            @JaguarMask.started += instance.OnJaguarMask;
+            @JaguarMask.performed += instance.OnJaguarMask;
+            @JaguarMask.canceled += instance.OnJaguarMask;
+            @AxolotlMask.started += instance.OnAxolotlMask;
+            @AxolotlMask.performed += instance.OnAxolotlMask;
+            @AxolotlMask.canceled += instance.OnAxolotlMask;
+            @Climb.started += instance.OnClimb;
+            @Climb.performed += instance.OnClimb;
+            @Climb.canceled += instance.OnClimb;
         }
 
         /// <summary>
@@ -452,9 +539,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @MaskAbilitie.started -= instance.OnMaskAbilitie;
             @MaskAbilitie.performed -= instance.OnMaskAbilitie;
             @MaskAbilitie.canceled -= instance.OnMaskAbilitie;
-            @MaskSelection.started -= instance.OnMaskSelection;
-            @MaskSelection.performed -= instance.OnMaskSelection;
-            @MaskSelection.canceled -= instance.OnMaskSelection;
+            @MonkeyMask.started -= instance.OnMonkeyMask;
+            @MonkeyMask.performed -= instance.OnMonkeyMask;
+            @MonkeyMask.canceled -= instance.OnMonkeyMask;
+            @JaguarMask.started -= instance.OnJaguarMask;
+            @JaguarMask.performed -= instance.OnJaguarMask;
+            @JaguarMask.canceled -= instance.OnJaguarMask;
+            @AxolotlMask.started -= instance.OnAxolotlMask;
+            @AxolotlMask.performed -= instance.OnAxolotlMask;
+            @AxolotlMask.canceled -= instance.OnAxolotlMask;
+            @Climb.started -= instance.OnClimb;
+            @Climb.performed -= instance.OnClimb;
+            @Climb.canceled -= instance.OnClimb;
         }
 
         /// <summary>
@@ -524,11 +620,32 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMaskAbilitie(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "MaskSelection" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "MonkeyMask" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMaskSelection(InputAction.CallbackContext context);
+        void OnMonkeyMask(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "JaguarMask" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnJaguarMask(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "AxolotlMask" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAxolotlMask(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Climb" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnClimb(InputAction.CallbackContext context);
     }
 }
