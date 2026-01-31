@@ -1,6 +1,6 @@
 using UnityEngine;
 
-enum PlayerMask
+public enum PlayerMask
 {
     None = 0,
     Monkey = 1,
@@ -11,39 +11,65 @@ enum PlayerMask
 public class PlayerController : MonoBehaviour
 {
     [Header("Stats")]
+    [Tooltip("Movement speed of the player")]
     [SerializeField] private float m_moveSpeed = 5f;
+    [Tooltip("Jump force applied to the player")]
     [SerializeField] private float m_jumpForce = 10f;
+    [Tooltip("The amount of control the player has while in the air")]
+    [Range(0.0f, 1.0f)]
     [SerializeField] private float m_airControll = 0.8f;
+    [Tooltip("The amount of force you will be pulled to the ground")]
     [SerializeField] private float m_gravityScale = 1.0f;
+    [Tooltip("The speed boost the jaguar mask will ADD to the basic move speed")]
     [SerializeField] private float m_jaguarSpeed = 8.0f;
+    [Tooltip("The jump force the monkey mask will ADD to the basic jump force")]
     [SerializeField] private float m_monkeyJumpBoost = 10.0f;
+    [Tooltip("Climb speed with the monkey mask")]
     [SerializeField] private float m_climbSpeed = 3.0f;
+    [Tooltip("Cooldown for using abilities (it stays even if player change mask)")]
     [SerializeField] private float m_abilityCooldown = 1.0f;
+    [Tooltip("Amount of time the player has for using the boosted jump")]
     [SerializeField] private float m_monkeyBoostDuration = 2.0f;
+    [Tooltip("The distance from the player ")]
     [SerializeField] private float m_attackDistance = 1.0f;
 
     [Header("GroundCheck")]
+    [Tooltip("The left point for ground detection")]
     [SerializeField] private Transform m_lGroundCheck;
+    [Tooltip("The right point for ground detection")]
     [SerializeField] private Transform m_rGroundCheck;
+    [Tooltip("Radius for ground detection")]
     [SerializeField] private float m_groundRadius = 0.2f;
+    [Tooltip("Layer used for ground detection")]
     [SerializeField] private LayerMask m_groundLayer;
 
     [Header("WallCheck")]
+    [Tooltip("The left point for wall detection")]
     [SerializeField] private Transform m_wallCheckLeft;
+    [Tooltip("The right point for wall detection")]
     [SerializeField] private Transform m_wallCheckRight;
+    [Tooltip("Radius for wall detection")]
     [SerializeField] private float m_wallCheckRadius = 0.1f;
+    [Tooltip("Layer used for wall detection")]
     [SerializeField] private LayerMask m_wallLayer;
+    [Tooltip("Jump force from a wall (apply force on both axes)")]
     [SerializeField] private Vector2 m_wallJumpForce = new Vector2(10.0f, 15.0f);
+    [Tooltip("Amount of time the wall jump force is going to be preserved")]
     [SerializeField] private float m_wallJumpDuration = 0.2f;
 
     [Header("Attack")]
+    [Tooltip("Instantieted prefab for attacking")]
     [SerializeField] private GameObject m_attackBox;
 
-    //private PlayerController m_instance;
+    // Rigidbody component
     private Rigidbody2D m_rb;
+    // Player input actions
     private PlayerInputActions m_inputActions;
+    // Player state machine
     private StateMachine m_stateMachine;
+    // Sprite renderer component
     private SpriteRenderer m_spriteRenderer;
+    // Mask in use
     private PlayerMask m_currentMask = PlayerMask.None;
 
     private Vector2 m_movementInput;
@@ -68,6 +94,7 @@ public class PlayerController : MonoBehaviour
     public bool IsJumping { get { return m_isJumping; } }
     public Rigidbody2D PlayerRB { get { return m_rb; } }
     public bool IsWallJumping { get { return m_isWallJumping; } }
+    public PlayerMask CurrentMask { get { return m_currentMask; } }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
