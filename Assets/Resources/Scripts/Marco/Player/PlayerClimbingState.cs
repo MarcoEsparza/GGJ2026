@@ -24,6 +24,9 @@ public class PlayerClimbingState : IState
         {
             m_playerController = m_owner.GetComponent<PlayerController>();
         }
+        m_playerController.PlayerRB.gravityScale = 0.0f;
+        m_playerController.PlayerRB.linearVelocityY = 0.0f;
+
         Debug.Log("Enter Climb State");
     }
 
@@ -48,11 +51,12 @@ public class PlayerClimbingState : IState
             m_stateMachine.ChangeState("Move");
             m_playerController.PlayerRB.linearVelocityY = 5.0f;
         }
-        else if(!m_playerController.CheckClimbActivation() &&
+        else if(m_playerController.IsGrounded &&
+                !m_playerController.CheckClimbActivation() &&
                 m_playerController.MovementInput.Equals(Vector2.zero))
         {
             m_stateMachine.ChangeState("Idle");
-            m_playerController.PlayerRB.AddForceY(3.0f);
+            //m_playerController.PlayerRB.AddForceY(3.0f);
         }
         else if(m_playerController.CheckClimbActivation() && m_playerController.IsJumping)
         {
