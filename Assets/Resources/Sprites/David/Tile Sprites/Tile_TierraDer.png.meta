@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 278c591d80193134d8eda10efaf07922
+guid: 5d34ed5fc58cc3c40bd971282afa2b77
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7559468360837562300
-    second: AXOL_COLOR_0
+      213: 2352634815102834367
+    second: Tile_TierraDer_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AXOL_COLOR_0
+      name: Tile_TierraDer_0
       rect:
         serializedVersion: 2
-        x: 45
-        y: 105
-        width: 83
-        height: 55
+        x: 0
+        y: 0
+        width: 151
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cbff6822c60a8e860800000000000000
-      internalID: 7559468360837562300
+      spriteID: fb6db6846ec36a020800000000000000
+      internalID: 2352634815102834367
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      AXOL_COLOR_0: 7559468360837562300
+      Tile_TierraDer_0: 2352634815102834367
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

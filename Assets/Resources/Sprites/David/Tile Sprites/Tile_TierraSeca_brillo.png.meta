@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 278c591d80193134d8eda10efaf07922
+guid: 5df58a91abc535e42a1d1f4a32273f58
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7559468360837562300
-    second: AXOL_COLOR_0
+      213: 6385907185224683654
+    second: Tile_TierraSeca_brillo_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AXOL_COLOR_0
+      name: Tile_TierraSeca_brillo_0
       rect:
         serializedVersion: 2
-        x: 45
-        y: 105
-        width: 83
-        height: 55
+        x: 0
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cbff6822c60a8e860800000000000000
-      internalID: 7559468360837562300
+      spriteID: 6809eef30cc4f9850800000000000000
+      internalID: 6385907185224683654
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      AXOL_COLOR_0: 7559468360837562300
+      Tile_TierraSeca_brillo_0: 6385907185224683654
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

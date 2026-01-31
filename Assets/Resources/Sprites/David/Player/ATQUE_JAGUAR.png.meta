@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 278c591d80193134d8eda10efaf07922
+guid: 51ea2e1b5d61dc543a1f70df2975d19b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7559468360837562300
-    second: AXOL_COLOR_0
+      213: 7196054010187688900
+    second: ATQUE_JAGUAR_0
+  - first:
+      213: 7961713250898392849
+    second: ATQUE_JAGUAR_1
+  - first:
+      213: -6991709045223894694
+    second: ATQUE_JAGUAR_2
+  - first:
+      213: 5907589741237694307
+    second: ATQUE_JAGUAR_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +55,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 80
+  spritePixelsToUnits: 320
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AXOL_COLOR_0
+      name: ATQUE_JAGUAR_0
       rect:
         serializedVersion: 2
-        x: 45
-        y: 105
-        width: 83
-        height: 55
+        x: 13
+        y: 0
+        width: 45
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cbff6822c60a8e860800000000000000
-      internalID: 7559468360837562300
+      spriteID: 4cb23c5fef48dd360800000000000000
+      internalID: 7196054010187688900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ATQUE_JAGUAR_1
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 0
+        width: 58
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 117b15bc400bd7e60800000000000000
+      internalID: 7961713250898392849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ATQUE_JAGUAR_2
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 0
+        width: 55
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a515b82caa578fe90800000000000000
+      internalID: -6991709045223894694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ATQUE_JAGUAR_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 65
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36fe635e199fbf150800000000000000
+      internalID: 5907589741237694307
       vertices: []
       indices: 
       edges: []
@@ -125,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      AXOL_COLOR_0: 7559468360837562300
+      ATQUE_JAGUAR_0: 7196054010187688900
+      ATQUE_JAGUAR_1: 7961713250898392849
+      ATQUE_JAGUAR_2: -6991709045223894694
+      ATQUE_JAGUAR_3: 5907589741237694307
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
