@@ -16,14 +16,22 @@ public class PlayerMoveState : IState
         set { m_owner = value; }
     }
 
+    PlayerController m_playerController;
+
     public void OnStateEnter()
     {
+        if (m_playerController == null)
+        {
+            m_playerController = m_owner.GetComponent<PlayerController>();
+        }
 
+        Debug.Log("Enter Move State");
     }
 
     public void OnExecuteState()
     {
-
+        CheckStateConditions();
+        m_playerController.Movement();
     }
 
     public void OnExitState()
@@ -33,6 +41,13 @@ public class PlayerMoveState : IState
 
     public void CheckStateConditions()
     {
-
+        if(m_playerController.MovementInput == Vector2.zero && m_playerController.IsGrounded)
+        {
+            m_stateMachine.ChangeState("Idle");
+        }
+        else if(m_playerController.IsGrounded && m_playerController.IsJumping)
+        {
+            m_stateMachine.ChangeState("Jump");
+        }
     }
 }

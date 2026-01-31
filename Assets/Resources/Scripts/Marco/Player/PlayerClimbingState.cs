@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerIdleState : IState
+public class PlayerClimbingState : IState
 {
     private StateMachine m_stateMachine;
     public StateMachine StateController
@@ -20,12 +20,10 @@ public class PlayerIdleState : IState
 
     public void OnStateEnter()
     {
-        if(m_playerController == null)
+        if (m_playerController == null)
         {
             m_playerController = m_owner.GetComponent<PlayerController>();
         }
-
-        Debug.Log("Enter Idle State");
     }
 
     public void OnExecuteState()
@@ -40,13 +38,6 @@ public class PlayerIdleState : IState
 
     public void CheckStateConditions()
     {
-        if(m_playerController.MovementInput != Vector2.zero)
-        {
-            m_stateMachine.ChangeState("Move");
-        }
-        else if(m_playerController.IsGrounded && m_playerController.IsJumping)
-        {
-            m_stateMachine.ChangeState("Jump");
-        }
+        
     }
 }
