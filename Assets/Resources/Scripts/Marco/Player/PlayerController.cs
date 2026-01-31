@@ -23,7 +23,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_attackDistance = 1.0f;
 
     [Header("GroundCheck")]
-    [SerializeField] private Transform m_groundCheck;
+    [SerializeField] private Transform m_lGroundCheck;
+    [SerializeField] private Transform m_rGroundCheck;
     [SerializeField] private float m_groundRadius = 0.2f;
     [SerializeField] private LayerMask m_groundLayer;
 
@@ -216,9 +217,14 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        m_isGrounded = Physics2D.OverlapCircle(m_groundCheck.position,
-                                               m_groundRadius,
-                                               m_groundLayer);
+        bool leftGroundDetection = Physics2D.OverlapCircle(m_lGroundCheck.position,
+                                                           m_groundRadius,
+                                                           m_groundLayer);
+        bool rightGroundDetection = Physics2D.OverlapCircle(m_rGroundCheck.position,
+                                                            m_groundRadius,
+                                                            m_groundLayer);
+        m_isGrounded = leftGroundDetection || rightGroundDetection;
+
         m_touchingWallLeft = Physics2D.OverlapCircle(m_wallCheckLeft.position,
                                                      m_wallCheckRadius,
                                                      m_wallLayer);
@@ -269,8 +275,18 @@ public class PlayerController : MonoBehaviour
             additionalVel = m_jaguarSpeed;
         }
 
+        // Preserve momentum when no input is given
+        //if(m_movementInput.x == 0.0f)
+        //{
+        //    float decelFactor = m_isGrounded ? 0.3f : 1.0f;
+        //    m_rb.linearVelocity = new Vector2(m_rb.linearVelocity.x * decelFactor, m_rb.linearVelocity.y);
+        //    return;
+        //}
+
         float controllFactor = m_isGrounded ? 1.0f : m_airControll;
-        float horizontalVelocity = (m_movementInput.x * (additionalVel + m_moveSpeed)) * controllFactor;
+        float horizontalVelocity = m_movementInput.x *
+                                   (additionalVel + m_moveSpeed) *
+                                   controllFactor;
         m_rb.linearVelocity = new Vector2(horizontalVelocity, m_rb.linearVelocity.y);
     }
 
