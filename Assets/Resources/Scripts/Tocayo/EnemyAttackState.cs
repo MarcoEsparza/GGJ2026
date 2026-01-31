@@ -28,21 +28,29 @@ public class EnemyAttackState : IState
     //Method executed every frame for the current state.
     public void OnExecuteState()
     {
+        m_controller.TickAttackTime();
+        // if the attack timer is greater than the delay set for the attack to hit
+        if (m_controller.GetAttackTime() > m_controller.GetAttackDelay()) {
+            // if the player is still in range
+            if (m_controller.GetTarget()) {
+                GameManager.Instance.ResetLevel();
+            }
+        }
         CheckStateConditions();
     }
 
     //Method executed at the end of a state.
     public void OnExitState()
     {
-
+        m_controller.ResetAttackTime();
     }
 
     //Method executed to check if the current state should change state.
     public void CheckStateConditions()
     {
         // if there is no longer a target or the target is out of sight
-        if (!m_controller.GetTarget() || !m_controller.InLineOfSight())
-        {
+        if ((!m_controller.GetTarget() || !m_controller.InLineOfSight()) ||
+            (m_controller.GetAttackTime() > m_controller.GetAttackDuration())) { // if attack time is greater than the attack duration.
             m_stateMachine.ChangeState("Move");
         }
     }
