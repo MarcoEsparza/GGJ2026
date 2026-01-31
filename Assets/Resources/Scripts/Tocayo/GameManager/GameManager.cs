@@ -6,7 +6,6 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
-    public static event Action PlayerHit = () => { ResetLevel(); };
     public static GameManager Instance { get; private set; }
 
     private void Awake()
@@ -32,7 +31,7 @@ public class GameManager : MonoBehaviour
         m_timer += Time.deltaTime;
     }
 
-    private static void ResetLevel()
+    public void ResetLevel()
     {
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
