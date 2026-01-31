@@ -23,17 +23,12 @@ public class LevelStructure : MonoBehaviour
     /// <returns>If the victory point is in range.</returns>
     public bool CheckVictory()
     {
+        if (!m_endPoint || !m_player) {
+            return false;
+        }
         // could be changed to something else.
         return Vector3.Distance(m_player.transform.position,
                                 m_endPoint.transform.position) < m_distanceVictoryCheck;
-    }
-
-    /// <summary>
-    /// Return the player to the starting position.
-    /// </summary>
-    public void ReturnToOrigin()
-    {
-        m_player.transform.position = m_startPoint.transform.position;
     }
 
     /// <summary>
@@ -72,8 +67,7 @@ public class LevelStructure : MonoBehaviour
     }
 
     [SerializeField] private float m_score;
-    [SerializeField] private GameObject m_startPoint;
-    [SerializeField] private GameObject m_endPoint;
+    [SerializeField] private Transform m_endPoint;
     [SerializeField] private GameObject m_player; // to do: placeholder
     [SerializeField] private float m_distanceVictoryCheck = 1.0f;
 }
