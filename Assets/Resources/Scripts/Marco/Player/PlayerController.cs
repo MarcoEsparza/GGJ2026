@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public enum PlayerMask
 {
@@ -10,6 +11,9 @@ public enum PlayerMask
 
 public class PlayerController : MonoBehaviour
 {
+    public static event Action<bool> axolotlMaskOn;
+    public static event Action<PlatformType> selectPlatform;
+
     [Header("Stats")]
     [Tooltip("Movement speed of the player")]
     [SerializeField] private float m_moveSpeed = 5f;
@@ -84,6 +88,7 @@ public class PlayerController : MonoBehaviour
     private bool m_usingAbility = false;
     private bool m_canUseAbility = true;
     private bool m_usingMonkeyAbility = false;
+    private PlatformType m_currentPlatformVisibility = PlatformType.Type1;
 
     private float m_wallJumpTimer = 0.0f;
     private float m_abilityTimer = 0.0f;
@@ -157,7 +162,7 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -227,7 +232,20 @@ public class PlayerController : MonoBehaviour
             }
             else if(m_currentMask == PlayerMask.Axolotl)
             {
-                // Axolotl ability activation
+                if(selectPlatform != null)
+                {
+                    m_canUseAbility = false;
+                    if(m_currentPlatformVisibility == PlatformType.Type1)
+                    {
+                        m_currentPlatformVisibility = PlatformType.Type2;
+                        selectPlatform(PlatformType.Type2);
+                    }
+                    else
+                    {
+                        m_currentPlatformVisibility = PlatformType.Type1;
+                        selectPlatform(PlatformType.Type1);
+                    }
+                }
             }
         }
 
@@ -282,9 +300,9 @@ public class PlayerController : MonoBehaviour
         m_inputActions.Player.Climb.canceled += ctx => m_climbInput = Vector2.zero;
         m_inputActions.Player.Jump.performed += ctx => m_isJumping = true;
         m_inputActions.Player.Jump.canceled += ctx => m_isJumping = false;
-        m_inputActions.Player.MonkeyMask.performed += ctx => m_currentMask = PlayerMask.Monkey;
-        m_inputActions.Player.JaguarMask.performed += ctx => m_currentMask = PlayerMask.Jaguar;
-        m_inputActions.Player.AxolotlMask.performed += ctx => m_currentMask = PlayerMask.Axolotl;
+        m_inputActions.Player.MonkeyMask.performed += ctx => PutMonkeyMaskOn();
+        m_inputActions.Player.JaguarMask.performed += ctx => PutJaguarMaskOn();
+        m_inputActions.Player.AxolotlMask.performed += ctx => PutAxolotlMaskOn();
         m_inputActions.Player.MaskAbilitie.performed += ctx => m_usingAbility = true;
         m_inputActions.Player.MaskAbilitie.canceled += ctx => m_usingAbility = false;
     }
@@ -381,5 +399,37 @@ public class PlayerController : MonoBehaviour
     public void ResetGravityScale()
     {
         m_rb.gravityScale = m_gravityScale;
+    }
+
+    public void PutMonkeyMaskOn()
+    {
+        m_currentMask = PlayerMask.Monkey;
+
+        if (axolotlMaskOn != null)
+        {
+            axolotlMaskOn(false);
+        }
+    }
+
+    public void PutJaguarMaskOn()
+    {
+        m_currentMask = PlayerMask.Jaguar;
+        m_usingMonkeyAbility = false;
+
+        if (axolotlMaskOn != null)
+        {
+            axolotlMaskOn(false);
+        }
+    }
+
+    public void PutAxolotlMaskOn()
+    {
+        m_currentMask = PlayerMask.Axolotl;
+        m_usingMonkeyAbility = false;
+
+        if (axolotlMaskOn != null)
+        {
+            axolotlMaskOn(true);
+        }
     }
 }
