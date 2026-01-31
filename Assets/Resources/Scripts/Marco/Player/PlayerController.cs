@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_climbSpeed = 3.0f;
     [SerializeField] private float m_abilityCooldown = 1.0f;
     [SerializeField] private float m_monkeyBoostDuration = 2.0f;
+    [SerializeField] private float m_attackDistance = 1.0f;
 
     [Header("GroundCheck")]
     [SerializeField] private Transform m_groundCheck;
@@ -33,6 +34,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask m_wallLayer;
     [SerializeField] private Vector2 m_wallJumpForce = new Vector2(10.0f, 15.0f);
     [SerializeField] private float m_wallJumpDuration = 0.2f;
+
+    [Header("Attack")]
+    [SerializeField] private GameObject m_attackBox;
 
     //private PlayerController m_instance;
     private Rigidbody2D m_rb;
@@ -172,11 +176,14 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        m_abilityTimer += Time.deltaTime;
-        if (m_abilityTimer >= m_abilityCooldown)
+        if (!m_canUseAbility)
         {
-            m_canUseAbility = true;
-            m_abilityTimer = 0.0f;
+            m_abilityTimer += Time.deltaTime;
+            if (m_abilityTimer >= m_abilityCooldown)
+            {
+                m_canUseAbility = true;
+                m_abilityTimer = 0.0f;
+            }
         }
 
         if (m_canUseAbility && m_usingAbility)
@@ -184,6 +191,15 @@ public class PlayerController : MonoBehaviour
             if(m_currentMask == PlayerMask.Monkey)
             {
                 m_usingMonkeyAbility = true;
+                m_canUseAbility = false;
+            }
+            else if(m_currentMask == PlayerMask.Jaguar)
+            {
+                Attack();
+            }
+            else if(m_currentMask == PlayerMask.Axolotl)
+            {
+                // Axolotl ability activation
             }
         }
 
@@ -284,6 +300,17 @@ public class PlayerController : MonoBehaviour
     public void Climbing()
     {
         m_rb.linearVelocity = new Vector2(m_rb.linearVelocity.x, m_climbInput.y * m_climbSpeed);
+    }
+
+    public void Attack()
+    {
+        float distanceFromPlayer = m_isLookingRight ? m_attackDistance : -m_attackDistance;
+        Vector3 boxPos = new Vector3(transform.position.x + distanceFromPlayer,
+                                     transform.position.y,
+                                     transform.position.z);
+        Instantiate(m_attackBox, boxPos, Quaternion.identity);
+
+        m_canUseAbility = false;
     }
 
     public bool CheckClimbActivation()
