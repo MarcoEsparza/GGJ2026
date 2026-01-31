@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// This class must have an is trigger collider and a simulated rigidbody.
+/// </summary>
+
 public class Hazard : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
