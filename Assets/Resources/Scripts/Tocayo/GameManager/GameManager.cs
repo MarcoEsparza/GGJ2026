@@ -33,8 +33,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Change the current level.
     /// </summary>
-    public void
-    NextLevel()
+    public void NextLevel()
     {
         // if the index is out of range.
         if (m_levelIndex > m_levelNames.Count - 1) {
@@ -51,13 +50,11 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// In case the player leaves the main game loop completely.
     /// </summary>
-    public void
-    ExitGameLoop() // to do: give a more comprehensive name.
+    public void ExitGameLoop() // to do: give a more comprehensive name.
     {
         m_levelIndex = 0;
     }
 
     private int m_levelIndex = 0;
-
     [SerializeField] private List<string> m_levelNames;
 }

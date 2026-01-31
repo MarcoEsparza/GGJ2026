@@ -21,8 +21,7 @@ public class LevelStructure : MonoBehaviour
     /// Check if the player is near the victory point.
     /// </summary>
     /// <returns>If the victory point is in range.</returns>
-    public bool
-    CheckVictory()
+    public bool CheckVictory()
     {
         // could be changed to something else.
         return Vector3.Distance(m_player.transform.position,
@@ -32,8 +31,7 @@ public class LevelStructure : MonoBehaviour
     /// <summary>
     /// Return the player to the starting position.
     /// </summary>
-    public void
-    ReturnToOrigin()
+    public void ReturnToOrigin()
     {
         m_player.transform.position = m_startPoint.transform.position;
     }
@@ -41,8 +39,7 @@ public class LevelStructure : MonoBehaviour
     /// <summary>
     /// When the player leaves the level.
     /// </summary>
-    public void
-    OnExit()
+    public void OnExit()
     {
         // json for scores
     }
@@ -51,8 +48,7 @@ public class LevelStructure : MonoBehaviour
     /// Add points to the current level score.
     /// </summary>
     /// <param name="_score">Score to be added.</param>
-    public void
-    AddScore(float _score)
+    public void AddScore(float _score)
     {
         m_score += _score;
     }
@@ -61,8 +57,7 @@ public class LevelStructure : MonoBehaviour
     /// Rewrite the current score of the level.
     /// </summary>
     /// <param name="_score">New score.</param>
-    public void
-    SetScore(float _score)
+    public void SetScore(float _score)
     {
         m_score = _score;
     }
@@ -71,8 +66,7 @@ public class LevelStructure : MonoBehaviour
     /// Get the current level score.
     /// </summary>
     /// <returns></returns>
-    public float
-    GetScore()
+    public float GetScore()
     {
         return m_score;
     }
@@ -80,7 +74,6 @@ public class LevelStructure : MonoBehaviour
     [SerializeField] private float m_score;
     [SerializeField] private GameObject m_startPoint;
     [SerializeField] private GameObject m_endPoint;
-    [SerializeField] private string m_name;
     [SerializeField] private GameObject m_player; // to do: placeholder
-    [SerializeField] private float m_distanceVictoryCheck;
+    [SerializeField] private float m_distanceVictoryCheck = 1.0f;
 }

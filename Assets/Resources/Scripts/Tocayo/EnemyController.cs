@@ -44,7 +44,8 @@ public class EnemyController : MonoBehaviour
     /// Check if the target is in line of sight.
     /// </summary>
     /// <returns>Wether the line is clear or not.</returns>
-    public bool InLineOfSight()
+    public bool
+    InLineOfSight()
     {
         // if there is no target to seek, ignore.
         if (!m_target) {
@@ -87,8 +88,7 @@ public class EnemyController : MonoBehaviour
     /// Get the current target of the enemy.
     /// </summary>
     /// <returns>Target of the enemy.</returns>
-    public Transform
-    GetTarget()
+    public Transform GetTarget()
     {
         return m_target;
     }
@@ -97,8 +97,7 @@ public class EnemyController : MonoBehaviour
     /// Set the target of the enemy.
     /// </summary>
     /// <param name="_target"></param>
-    public void
-    SetTarget(ref Transform _target)
+    public void SetTarget(ref Transform _target)
     {
         m_target = _target;
     }
@@ -107,8 +106,7 @@ public class EnemyController : MonoBehaviour
     /// Get the direction the enemy is currently looking towards.
     /// </summary>
     /// <returns>The current direction (-1 to 1)</returns>
-    public float
-    GetDirection()
+    public float GetDirection()
     {
         return m_direction;
     }
@@ -117,8 +115,7 @@ public class EnemyController : MonoBehaviour
     /// Set the direction the enemy will be facing.
     /// </summary>
     /// <param name="_direction">New direction(-1 to 1)</param>
-    public void
-    SetDirection(float _direction)
+    public void SetDirection(float _direction)
     {
         m_direction = _direction;
     }

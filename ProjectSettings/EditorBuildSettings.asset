@@ -8,6 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Resources/Scenes/Tocayo/levelManagerTest.unity
+    guid: c0e95dee45ba50e4493cfb5911075a36
+  - enabled: 1
+    path: Assets/Resources/Scenes/Tocayo/scene1.unity
+    guid: 5227b1e65ce9d2642bbd4d756e2e3174
+  - enabled: 1
+    path: Assets/Resources/Scenes/Tocayo/scene2.unity
+    guid: be2919e157d3288408feaf1f27968659
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

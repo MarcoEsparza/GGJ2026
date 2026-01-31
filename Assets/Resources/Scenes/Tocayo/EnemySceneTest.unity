@@ -676,7 +676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   m_isGrounded: 0
-  m_sightRange: 2
+  m_sightRange: 1
   m_speed: 1
   m_forwardCheckDistance: 1
   m_downCheckDistance: 1
@@ -819,13 +819,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323763852}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.68, y: -2.42, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.5277154, w: 0.8494213}
+  m_LocalPosition: {x: -1.1, y: -3.16, z: 0}
   m_LocalScale: {x: 0.4757, y: 2.7228, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -63.702}
 --- !u!1 &1923882520
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,7 +943,7 @@ Transform:
   m_GameObject: {fileID: 1943362488}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.72, y: -2.14, z: 0}
+  m_LocalPosition: {x: -2.72, y: -2.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
