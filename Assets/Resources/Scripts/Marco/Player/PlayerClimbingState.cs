@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerJumpState : IState
+public class PlayerClimbingState : IState
 {
     private StateMachine m_stateMachine;
     public StateMachine StateController
@@ -24,39 +24,39 @@ public class PlayerJumpState : IState
         {
             m_playerController = m_owner.GetComponent<PlayerController>();
         }
-
-        Debug.Log("Enter Jump State");
+        Debug.Log("Enter Climb State");
     }
 
     public void OnExecuteState()
     {
         CheckStateConditions();
-        m_playerController.Jumping();
-        m_playerController.Movement();
+        m_playerController.Climbing();
+        //m_playerController.Jumping();
     }
 
     public void OnExitState()
     {
-
+        m_playerController.ResetGravityScale();
     }
 
     public void CheckStateConditions()
     {
         if(m_playerController.IsGrounded &&
-           !m_playerController.MovementInput.Equals(Vector2.zero) &&
-           m_playerController.PlayerRB.linearVelocityY == 0.0f)
+           !m_playerController.CheckClimbActivation() &&
+           !m_playerController.MovementInput.Equals(Vector2.zero))
         {
             m_stateMachine.ChangeState("Move");
+            m_playerController.PlayerRB.linearVelocityY = 5.0f;
         }
-        else if(m_playerController.IsGrounded &&
-                m_playerController.MovementInput.Equals(Vector2.zero) &&
-                m_playerController.PlayerRB.linearVelocity.Equals(Vector2.zero))
+        else if(!m_playerController.CheckClimbActivation() &&
+                m_playerController.MovementInput.Equals(Vector2.zero))
         {
             m_stateMachine.ChangeState("Idle");
+            m_playerController.PlayerRB.AddForceY(3.0f);
         }
-        else if(m_playerController.CheckClimbActivation() && !m_playerController.IsJumping)
+        else if(m_playerController.CheckClimbActivation() && m_playerController.IsJumping)
         {
-            m_stateMachine.ChangeState("Climb");
+            m_stateMachine.ChangeState("Jump");
         }
     }
 }
