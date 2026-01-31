@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     private bool m_isWallJumping = false;
     private bool m_isLookingRight = true;
     private bool m_canClimb = false;
-    private bool m_useAbility = false;
+    private bool m_usingAbility = false;
     private bool m_canUseAbility = true;
     private bool m_usingMonkeyAbility = false;
 
@@ -133,33 +133,6 @@ public class PlayerController : MonoBehaviour
     {
         m_stateMachine.CurrentState.OnExecuteState();
 
-        if (m_isWallJumping)
-        {
-            m_wallJumpTimer += Time.deltaTime;
-            if (m_wallJumpTimer >= m_wallJumpDuration)
-            {
-                m_isWallJumping = false;
-                m_wallJumpTimer = 0.0f;
-            }
-        }
-
-        m_abilityTimer += Time.deltaTime;
-        if (m_abilityTimer >= m_abilityCooldown)
-        {
-            m_canUseAbility = true;
-            m_abilityTimer = 0.0f;
-        }
-
-        if(m_usingMonkeyAbility)
-        {
-            m_monkeyAbilityTimer += Time.deltaTime;
-            if(m_monkeyAbilityTimer >= m_monkeyBoostDuration)
-            {
-                m_usingMonkeyAbility = false;
-                m_monkeyAbilityTimer = 0.0f;
-            }
-        }
-
         if (m_movementInput.x < 0.0f && m_isLookingRight)
         {
             // Flip to the left
@@ -187,6 +160,41 @@ public class PlayerController : MonoBehaviour
         else if(m_currentMask == PlayerMask.Axolotl)
         {
             m_spriteRenderer.color = Color.pink;
+        }
+
+        if (m_isWallJumping)
+        {
+            m_wallJumpTimer += Time.deltaTime;
+            if (m_wallJumpTimer >= m_wallJumpDuration)
+            {
+                m_isWallJumping = false;
+                m_wallJumpTimer = 0.0f;
+            }
+        }
+
+        m_abilityTimer += Time.deltaTime;
+        if (m_abilityTimer >= m_abilityCooldown)
+        {
+            m_canUseAbility = true;
+            m_abilityTimer = 0.0f;
+        }
+
+        if (m_canUseAbility && m_usingAbility)
+        {
+            if(m_currentMask == PlayerMask.Monkey)
+            {
+                m_usingMonkeyAbility = true;
+            }
+        }
+
+        if (m_usingMonkeyAbility)
+        {
+            m_monkeyAbilityTimer += Time.deltaTime;
+            if (m_monkeyAbilityTimer >= m_monkeyBoostDuration)
+            {
+                m_usingMonkeyAbility = false;
+                m_monkeyAbilityTimer = 0.0f;
+            }
         }
     }
 
@@ -228,8 +236,8 @@ public class PlayerController : MonoBehaviour
         m_inputActions.Player.MonkeyMask.performed += ctx => m_currentMask = PlayerMask.Monkey;
         m_inputActions.Player.JaguarMask.performed += ctx => m_currentMask = PlayerMask.Jaguar;
         m_inputActions.Player.AxolotlMask.performed += ctx => m_currentMask = PlayerMask.Axolotl;
-        m_inputActions.Player.MaskAbilitie.performed += ctx => m_useAbility = true;
-        m_inputActions.Player.MaskAbilitie.canceled += ctx => m_useAbility = false;
+        m_inputActions.Player.MaskAbilitie.performed += ctx => m_usingAbility = true;
+        m_inputActions.Player.MaskAbilitie.canceled += ctx => m_usingAbility = false;
     }
 
     public void Movement()
@@ -253,7 +261,7 @@ public class PlayerController : MonoBehaviour
     public void Jumping()
     {
         float additionalJump = 0.0f;
-        if(m_currentMask == PlayerMask.Monkey && m_canUseAbility && m_useAbility)
+        if(m_usingMonkeyAbility)
         {
             additionalJump = m_monkeyJumpBoost;
         }
