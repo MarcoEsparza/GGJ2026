@@ -29,6 +29,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/David/Tut_Level_3.unity
     guid: dfc3bb9967d4e4743a2fe167e68e992c
+  - enabled: 1
+    path: Assets/Resources/Scenes/Oscar/Level_5.unity
+    guid: a752a0c0267c0144593be999ade2902c
+  - enabled: 1
+    path: Assets/Resources/Scenes/Oscar/Level_8.unity
+    guid: aff6c31e1f72a3a41afc2e12fc74b659
+  - enabled: 1
+    path: Assets/Resources/Scenes/Cordoba/Level_9.unity
+    guid: 2bd25ad51d29033478333a9bb8ac4ac8
+  - enabled: 1
+    path: Assets/Resources/Scenes/Cordoba/Level_11.unity
+    guid: f127da66540d25a4b96c006aac1df1ea
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
