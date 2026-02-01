@@ -470,7 +470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 467045063054476824, guid: 98dc60fe54f22ad4e824f709fea8b335, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 782237187726492342, guid: 98dc60fe54f22ad4e824f709fea8b335, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16362,12 +16362,12 @@ GameObject:
   - component: {fileID: 1321090438}
   - component: {fileID: 1321090437}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Animation Testing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &1321090437
 Animator:
   serializedVersion: 7
@@ -19125,6 +19125,7 @@ MonoBehaviour:
   - Tut_Level_1
   - Tut_Level_2
   - Tut_Level_3
+  - Tut_Level_4
   - Level_5
   - Level_8
   - Level_9
@@ -19220,7 +19221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1357194150338784353, guid: b755741969c58da4591b744eb9162e6f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6164624122930598247, guid: b755741969c58da4591b744eb9162e6f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19283,7 +19284,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1650073771
 SpriteRenderer:
   serializedVersion: 2

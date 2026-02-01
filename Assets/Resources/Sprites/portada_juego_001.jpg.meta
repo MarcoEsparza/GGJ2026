@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 679d33fdb527eba449f323d84c09cb45
+guid: 17bc0d704588dfd49babbbaa7c922258
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7196054010187688900
-    second: ATQUE_JAGUAR_0
-  - first:
-      213: 7961713250898392849
-    second: ATQUE_JAGUAR_1
-  - first:
-      213: -6991709045223894694
-    second: ATQUE_JAGUAR_2
-  - first:
-      213: 5907589741237694307
-    second: ATQUE_JAGUAR_3
+      213: 1409898802259219744
+    second: portada_juego_001_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -60,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 320
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,89 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ATQUE_JAGUAR_0
+      name: portada_juego_001_0
       rect:
         serializedVersion: 2
-        x: 175
-        y: 98
-        width: 373
-        height: 669
+        x: 0
+        y: 0
+        width: 1920
+        height: 1200
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4cb23c5fef48dd360800000000000000
-      internalID: 7196054010187688900
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ATQUE_JAGUAR_1
-      rect:
-        serializedVersion: 2
-        x: 646
-        y: 98
-        width: 465
-        height: 646
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 117b15bc400bd7e60800000000000000
-      internalID: 7961713250898392849
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ATQUE_JAGUAR_2
-      rect:
-        serializedVersion: 2
-        x: 1165
-        y: 106
-        width: 441
-        height: 645
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a515b82caa578fe90800000000000000
-      internalID: -6991709045223894694
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ATQUE_JAGUAR_3
-      rect:
-        serializedVersion: 2
-        x: 1658
-        y: 107
-        width: 373
-        height: 668
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 36fe635e199fbf150800000000000000
-      internalID: 5907589741237694307
+      spriteID: 025d8ed9d77f09310800000000000000
+      internalID: 1409898802259219744
       vertices: []
       indices: 
       edges: []
@@ -200,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 3cc729ec8d5825a4d8c545bec88f5035
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -208,14 +133,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      ATQUE_JAGUAR_0: 7196054010187688900
-      ATQUE_JAGUAR_1: 7961713250898392849
-      ATQUE_JAGUAR_2: -6991709045223894694
-      ATQUE_JAGUAR_3: 5907589741237694307
+      portada_juego_001_0: 1409898802259219744
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
