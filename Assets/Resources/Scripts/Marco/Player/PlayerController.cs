@@ -1,5 +1,8 @@
-using UnityEngine;
 using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Animations;
+using UnityEngine;
 
 public enum PlayerMask
 {
@@ -65,6 +68,11 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Instantieted prefab for attacking")]
     [SerializeField] private GameObject m_attackBox;
 
+    [Header("Animators")]
+    [SerializeField] private List<GameObject> m_maskGOList;
+
+    //private List<Animator> m_animatorsList;
+
     // Rigidbody component
     private Rigidbody2D m_rb;
     // Player input actions
@@ -72,7 +80,7 @@ public class PlayerController : MonoBehaviour
     // Player state machine
     private StateMachine m_stateMachine;
     // Sprite renderer component
-    private SpriteRenderer m_spriteRenderer;
+    private SpriteRenderer m_currentSpriteRenderer;
     // Mask in use
     private PlayerMask m_currentMask = PlayerMask.None;
 
@@ -150,11 +158,9 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        //m_instance = this;
         m_rb = GetComponent<Rigidbody2D>();
         m_rb.gravityScale = m_gravityScale;
         m_inputActions = new PlayerInputActions();
-        m_spriteRenderer = GetComponent<SpriteRenderer>();
         SetUpStateMachine();
         SetUpInputActions();
     }
@@ -162,7 +168,8 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        GameObject currentMaskObj = m_maskGOList[(int)PlayerMask.None];
+        m_currentSpriteRenderer = currentMaskObj.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -173,30 +180,14 @@ public class PlayerController : MonoBehaviour
         if (m_movementInput.x < 0.0f && m_isLookingRight)
         {
             // Flip to the left
-            m_spriteRenderer.flipX = true;
+            FlipAllSprites(true);
             m_isLookingRight = false;
         }
         else if (m_movementInput.x > 0.0f && !m_isLookingRight)
         {
-            m_spriteRenderer.flipX = false;
+            // Flip to the right
+            FlipAllSprites(false);
             m_isLookingRight = true;
-        }
-
-        if(m_currentMask == PlayerMask.None)
-        {
-            // Set default abilities
-        }
-        else if(m_currentMask == PlayerMask.Monkey)
-        {
-            m_spriteRenderer.color = Color.brown;
-        }
-        else if(m_currentMask == PlayerMask.Jaguar)
-        {
-            m_spriteRenderer.color = Color.yellow;
-        }
-        else if(m_currentMask == PlayerMask.Axolotl)
-        {
-            m_spriteRenderer.color = Color.pink;
         }
 
         if (m_isWallJumping)
@@ -354,7 +345,9 @@ public class PlayerController : MonoBehaviour
             m_isWallJumping = true;
             m_wallJumpTimer = 0.0f;
             int direction = m_touchingWallLeft ? 1 : -1;
-            m_rb.linearVelocity = new Vector2(direction * m_wallJumpForce.x, m_wallJumpForce.y);
+            m_rb.linearVelocity = new Vector2(direction * m_wallJumpForce.x,
+                                              m_wallJumpForce.y);
+            AnimatorsSetTrigger("WallJump");
         }
     }
 
@@ -372,6 +365,8 @@ public class PlayerController : MonoBehaviour
         Instantiate(m_attackBox, boxPos, Quaternion.identity);
 
         m_canUseAbility = false;
+
+        AnimatorsSetTrigger("Attack");
     }
 
     public bool CheckClimbActivation()
@@ -388,8 +383,6 @@ public class PlayerController : MonoBehaviour
         }
         else if ((m_touchingWallLeft || m_touchingWallRight) && m_canClimb)
         {
-            //m_rb.gravityScale = 0.0f;
-            //m_rb.linearVelocityY = 0.0f;
             return true;
         }
 
@@ -409,6 +402,8 @@ public class PlayerController : MonoBehaviour
         {
             axolotlMaskOn(false);
         }
+
+        UpdateMaskVariables();
     }
 
     public void PutJaguarMaskOn()
@@ -420,6 +415,8 @@ public class PlayerController : MonoBehaviour
         {
             axolotlMaskOn(false);
         }
+
+        UpdateMaskVariables();
     }
 
     public void PutAxolotlMaskOn()
@@ -431,5 +428,39 @@ public class PlayerController : MonoBehaviour
         {
             axolotlMaskOn(true);
         }
+
+        UpdateMaskVariables();
+    }
+
+    private void UpdateMaskVariables()
+    {
+        m_currentSpriteRenderer.enabled = false;
+        GameObject currentMaskObj = m_maskGOList[(int)m_currentMask];
+        m_currentSpriteRenderer = currentMaskObj.GetComponent<SpriteRenderer>();
+        m_currentSpriteRenderer.enabled = true;
+    }
+
+    public void AnimatorsSetBool(string name, bool active)
+    {
+        m_maskGOList[(int)PlayerMask.None].GetComponent<Animator>().SetBool(name, active);
+        m_maskGOList[(int)PlayerMask.Monkey].GetComponent<Animator>().SetBool(name, active);
+        m_maskGOList[(int)PlayerMask.Jaguar].GetComponent<Animator>().SetBool(name, active);
+        m_maskGOList[(int)PlayerMask.Axolotl].GetComponent<Animator>().SetBool(name, active);
+    }
+
+    public void AnimatorsSetTrigger(string name)
+    {
+        m_maskGOList[(int)PlayerMask.None].GetComponent<Animator>().SetTrigger(name);
+        m_maskGOList[(int)PlayerMask.Monkey].GetComponent<Animator>().SetTrigger(name);
+        m_maskGOList[(int)PlayerMask.Jaguar].GetComponent<Animator>().SetTrigger(name);
+        m_maskGOList[(int)PlayerMask.Axolotl].GetComponent<Animator>().SetTrigger(name);
+    }
+
+    private void FlipAllSprites(bool flip)
+    {
+        m_maskGOList[(int)PlayerMask.None].GetComponent<SpriteRenderer>().flipX = flip;
+        m_maskGOList[(int)PlayerMask.Monkey].GetComponent<SpriteRenderer>().flipX = flip;
+        m_maskGOList[(int)PlayerMask.Jaguar].GetComponent<SpriteRenderer>().flipX = flip;
+        m_maskGOList[(int)PlayerMask.Axolotl].GetComponent<SpriteRenderer>().flipX = flip;
     }
 }

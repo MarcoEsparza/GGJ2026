@@ -26,6 +26,7 @@ public class PlayerIdleState : IState
         }
 
         Debug.Log("Enter Idle State");
+        m_playerController.AnimatorsSetBool("Idle", true);
     }
 
     public void OnExecuteState()
@@ -35,7 +36,7 @@ public class PlayerIdleState : IState
 
     public void OnExitState()
     {
-
+        m_playerController.AnimatorsSetBool("Idle", false);
     }
 
     public void CheckStateConditions()

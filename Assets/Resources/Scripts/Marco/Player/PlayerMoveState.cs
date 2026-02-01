@@ -26,6 +26,7 @@ public class PlayerMoveState : IState
         }
 
         Debug.Log("Enter Move State");
+        m_playerController.AnimatorsSetBool("Move", true);
     }
 
     public void OnExecuteState()
@@ -36,7 +37,7 @@ public class PlayerMoveState : IState
 
     public void OnExitState()
     {
-
+        m_playerController.AnimatorsSetBool("Move", false);
     }
 
     public void CheckStateConditions()
