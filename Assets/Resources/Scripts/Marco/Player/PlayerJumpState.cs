@@ -26,6 +26,7 @@ public class PlayerJumpState : IState
         }
 
         Debug.Log("Enter Jump State");
+        m_playerController.AnimatorsSetBool("Jump", true);
     }
 
     public void OnExecuteState()
@@ -37,7 +38,7 @@ public class PlayerJumpState : IState
 
     public void OnExitState()
     {
-
+        m_playerController.AnimatorsSetBool("Jump", false);
     }
 
     public void CheckStateConditions()

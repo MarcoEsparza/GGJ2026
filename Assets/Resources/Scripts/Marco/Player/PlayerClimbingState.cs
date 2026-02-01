@@ -28,6 +28,7 @@ public class PlayerClimbingState : IState
         m_playerController.PlayerRB.linearVelocityY = 0.0f;
 
         Debug.Log("Enter Climb State");
+        m_playerController.AnimatorsSetBool("Climb", true);
     }
 
     public void OnExecuteState()
@@ -40,6 +41,7 @@ public class PlayerClimbingState : IState
     public void OnExitState()
     {
         m_playerController.ResetGravityScale();
+        m_playerController.AnimatorsSetBool("Climb", false);
     }
 
     public void CheckStateConditions()
