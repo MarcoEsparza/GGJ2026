@@ -36,7 +36,7 @@ public class MainMenu : MonoBehaviour
       OpenSettingsMenu(false);
     }
 
-  public void OpenSettingsMenu(bool _active)
+    public void OpenSettingsMenu(bool _active)
     {
       m_mainMenu.SetActive(!_active);
       m_settingsMenu.SetActive(_active);
