@@ -26,6 +26,16 @@ public class PlayerJumpState : IState
         }
 
         Debug.Log("Enter Jump State");
+        m_playerController.AnimatorsSetBool("Jump", true);
+
+        if(m_playerController.IsUsingMonkeyAbility)
+        {
+            AudioManager.Instance.Play(m_playerController.PlayerAudioSrc, "MonkeyJump");
+        }
+        else
+        {
+            AudioManager.Instance.Play(m_playerController.PlayerAudioSrc, "NormalJump");
+        }
     }
 
     public void OnExecuteState()
@@ -33,11 +43,13 @@ public class PlayerJumpState : IState
         CheckStateConditions();
         m_playerController.Jumping();
         m_playerController.Movement();
+        m_playerController.AnimatorsSetBool("Jump", true);
+        m_playerController.AnimatorsSetBool("Move", false);
     }
 
     public void OnExitState()
     {
-
+        m_playerController.AnimatorsSetBool("Jump", false);
     }
 
     public void CheckStateConditions()

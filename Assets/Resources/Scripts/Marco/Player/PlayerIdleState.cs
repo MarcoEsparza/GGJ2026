@@ -26,16 +26,31 @@ public class PlayerIdleState : IState
         }
 
         Debug.Log("Enter Idle State");
+        m_playerController.AnimatorsSetBool("Idle", true);
+        m_playerController.AnimatorsSetBool("Move", false);
     }
 
     public void OnExecuteState()
     {
         CheckStateConditions();
+
+        if (!m_playerController.IsGrounded)
+        {
+            m_playerController.AnimatorsSetBool("Idle", false);
+            m_playerController.AnimatorsSetBool("Jump", true);
+        }
+        else if (m_playerController.IsGrounded &&
+                 m_playerController.MovementInput == Vector2.zero
+                 && !m_playerController.IsJumping)
+        {
+            m_playerController.AnimatorsSetBool("Idle", true);
+            m_playerController.AnimatorsSetBool("Jump", false);
+        }
     }
 
     public void OnExitState()
     {
-
+        m_playerController.AnimatorsSetBool("Idle", false);
     }
 
     public void CheckStateConditions()

@@ -1,5 +1,7 @@
-using UnityEngine;
 using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public enum PlayerMask
 {
@@ -65,6 +67,11 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Instantieted prefab for attacking")]
     [SerializeField] private GameObject m_attackBox;
 
+    [Header("Animators")]
+    [SerializeField] private List<GameObject> m_maskGOList;
+
+    //private List<Animator> m_animatorsList;
+
     // Rigidbody component
     private Rigidbody2D m_rb;
     // Player input actions
@@ -72,7 +79,9 @@ public class PlayerController : MonoBehaviour
     // Player state machine
     private StateMachine m_stateMachine;
     // Sprite renderer component
-    private SpriteRenderer m_spriteRenderer;
+    private SpriteRenderer m_currentSpriteRenderer;
+
+    private AudioSource m_audioSrc;
     // Mask in use
     private PlayerMask m_currentMask = PlayerMask.None;
 
@@ -100,6 +109,8 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D PlayerRB { get { return m_rb; } }
     public bool IsWallJumping { get { return m_isWallJumping; } }
     public PlayerMask CurrentMask { get { return m_currentMask; } }
+    public AudioSource PlayerAudioSrc { get { return m_audioSrc; } }
+    public bool IsUsingMonkeyAbility { get { return m_usingMonkeyAbility; } }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -150,11 +161,10 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        //m_instance = this;
         m_rb = GetComponent<Rigidbody2D>();
         m_rb.gravityScale = m_gravityScale;
         m_inputActions = new PlayerInputActions();
-        m_spriteRenderer = GetComponent<SpriteRenderer>();
+        m_audioSrc = GetComponent<AudioSource>();
         SetUpStateMachine();
         SetUpInputActions();
     }
@@ -162,7 +172,8 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        GameObject currentMaskObj = m_maskGOList[(int)PlayerMask.None];
+        m_currentSpriteRenderer = currentMaskObj.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -170,33 +181,18 @@ public class PlayerController : MonoBehaviour
     {
         m_stateMachine.CurrentState.OnExecuteState();
 
-        if (m_movementInput.x < 0.0f && m_isLookingRight)
+        if(m_stateMachine.CurrentState.GetType() == typeof(PlayerClimbingState)) { }
+        else if (m_movementInput.x < 0.0f && m_isLookingRight)
         {
             // Flip to the left
-            m_spriteRenderer.flipX = true;
+            FlipAllSprites(true);
             m_isLookingRight = false;
         }
         else if (m_movementInput.x > 0.0f && !m_isLookingRight)
         {
-            m_spriteRenderer.flipX = false;
+            // Flip to the right
+            FlipAllSprites(false);
             m_isLookingRight = true;
-        }
-
-        if(m_currentMask == PlayerMask.None)
-        {
-            // Set default abilities
-        }
-        else if(m_currentMask == PlayerMask.Monkey)
-        {
-            m_spriteRenderer.color = Color.brown;
-        }
-        else if(m_currentMask == PlayerMask.Jaguar)
-        {
-            m_spriteRenderer.color = Color.yellow;
-        }
-        else if(m_currentMask == PlayerMask.Axolotl)
-        {
-            m_spriteRenderer.color = Color.pink;
         }
 
         if (m_isWallJumping)
@@ -235,6 +231,7 @@ public class PlayerController : MonoBehaviour
                 if(selectPlatform != null)
                 {
                     m_canUseAbility = false;
+                    AudioManager.Instance.Play(m_audioSrc, "AxolotlVision");
                     if(m_currentPlatformVisibility == PlatformType.Type1)
                     {
                         m_currentPlatformVisibility = PlatformType.Type2;
@@ -338,9 +335,11 @@ public class PlayerController : MonoBehaviour
     public void Jumping()
     {
         float additionalJump = 0.0f;
+        //string audioStr = "NormalJump";
         if(m_usingMonkeyAbility)
         {
             additionalJump = m_monkeyJumpBoost;
+            //audioStr = "MonkeyJump";
         }
         float totalJumpForce = m_jumpForce + additionalJump;
 
@@ -354,8 +353,12 @@ public class PlayerController : MonoBehaviour
             m_isWallJumping = true;
             m_wallJumpTimer = 0.0f;
             int direction = m_touchingWallLeft ? 1 : -1;
-            m_rb.linearVelocity = new Vector2(direction * m_wallJumpForce.x, m_wallJumpForce.y);
+            m_rb.linearVelocity = new Vector2(direction * m_wallJumpForce.x,
+                                              m_wallJumpForce.y);
+            AnimatorsSetTrigger("WallJump");
         }
+
+        //AudioManager.Instance.Play(m_audioSrc, audioStr);
     }
 
     public void Climbing()
@@ -372,6 +375,9 @@ public class PlayerController : MonoBehaviour
         Instantiate(m_attackBox, boxPos, Quaternion.identity);
 
         m_canUseAbility = false;
+
+        AnimatorsSetTrigger("Attack");
+        AudioManager.Instance.Play(m_audioSrc, "Attack");
     }
 
     public bool CheckClimbActivation()
@@ -388,8 +394,6 @@ public class PlayerController : MonoBehaviour
         }
         else if ((m_touchingWallLeft || m_touchingWallRight) && m_canClimb)
         {
-            //m_rb.gravityScale = 0.0f;
-            //m_rb.linearVelocityY = 0.0f;
             return true;
         }
 
@@ -409,6 +413,8 @@ public class PlayerController : MonoBehaviour
         {
             axolotlMaskOn(false);
         }
+
+        UpdateMaskVariables();
     }
 
     public void PutJaguarMaskOn()
@@ -420,6 +426,8 @@ public class PlayerController : MonoBehaviour
         {
             axolotlMaskOn(false);
         }
+
+        UpdateMaskVariables();
     }
 
     public void PutAxolotlMaskOn()
@@ -430,6 +438,41 @@ public class PlayerController : MonoBehaviour
         if (axolotlMaskOn != null)
         {
             axolotlMaskOn(true);
+        }
+
+        UpdateMaskVariables();
+    }
+
+    private void UpdateMaskVariables()
+    {
+        m_currentSpriteRenderer.enabled = false;
+        GameObject currentMaskObj = m_maskGOList[(int)m_currentMask];
+        m_currentSpriteRenderer = currentMaskObj.GetComponent<SpriteRenderer>();
+        m_currentSpriteRenderer.enabled = true;
+        AudioManager.Instance.Play(m_audioSrc, "MaskChange");
+    }
+
+    public void AnimatorsSetBool(string name, bool active)
+    {
+        for(int i = 0; i < m_maskGOList.Count; i++)
+        {
+            m_maskGOList[i].GetComponent<Animator>().SetBool(name, active);
+        }
+    }
+
+    public void AnimatorsSetTrigger(string name)
+    {
+        for (int i = 0; i < m_maskGOList.Count; i++)
+        {
+            m_maskGOList[i].GetComponent<Animator>().SetTrigger(name);
+        }
+    }
+
+    private void FlipAllSprites(bool flip)
+    {
+        for (int i = 0; i < m_maskGOList.Count; i++)
+        {
+            m_maskGOList[i].GetComponent<SpriteRenderer>().flipX = flip;
         }
     }
 }
