@@ -56,7 +56,7 @@ public class EnemyMoveState : IState
     public void CheckStateConditions()
     {
         // if there is a target and the enemy is in line of sight of the target.
-        if (m_controller.GetTarget() && m_controller.InLineOfSight()) {
+        if (m_controller.GetTarget()) {
             m_stateMachine.ChangeState("Attack");
         }
     }
