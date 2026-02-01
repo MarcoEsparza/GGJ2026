@@ -31,6 +31,16 @@ public class GameManager : MonoBehaviour
         m_timer += Time.deltaTime;
     }
 
+    /// <summary>
+    /// Pause the level and activate the UI.
+    /// </summary>
+    public void EndLevel()
+    {
+        Time.timeScale = 0.0f;
+        m_uiEnd.SetActive(true);
+    }
+
+    // Reset the currently selected level.
     public void ResetLevel()
     {
         Scene currentScene = SceneManager.GetActiveScene();
@@ -42,6 +52,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void NextLevel()
     {
+        m_uiEnd.SetActive(false);
+        Time.timeScale = 1.0f;
         // if the time can be counted
         if (m_levelIndex <= m_times.Count - 1) {
             m_times[m_levelIndex] = m_timer;
@@ -72,4 +84,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float m_timer;
     [SerializeField] private List<float> m_times;
     [SerializeField] private List<string> m_levelNames;
+
+    [Header("UI Elements")]
+    [SerializeField] private GameObject m_uiEnd;
 }
