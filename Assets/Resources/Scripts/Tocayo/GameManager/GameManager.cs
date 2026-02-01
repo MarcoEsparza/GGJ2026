@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GameObject ui = Instantiate(m_endUIPrefab);
-        ui.SetActive(false);
+        m_UIInstance = Instantiate(m_endUIPrefab);
+        m_UIInstance.SetActive(false);
         m_times = new List<float>(new float[m_levelNames.Count]);
     }
 
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     public void EndLevel()
     {
         Time.timeScale = 0.0f;
-        m_endUIPrefab.SetActive(true);
+        m_UIInstance.SetActive(true);
     }
 
     // Reset the currently selected level.
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void NextLevel()
     {
-        m_endUIPrefab.SetActive(false);
+        m_UIInstance.SetActive(false);
         Time.timeScale = 1.0f;
         // if the time can be counted
         if (m_levelIndex <= m_times.Count - 1) {
@@ -88,5 +88,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<string> m_levelNames;
 
     [Header("UI Elements")]
+    private GameObject m_UIInstance;
     [SerializeField] private GameObject m_endUIPrefab;
 }
