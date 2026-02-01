@@ -81,6 +81,8 @@ public class PlayerController : MonoBehaviour
     private StateMachine m_stateMachine;
     // Sprite renderer component
     private SpriteRenderer m_currentSpriteRenderer;
+
+    private AudioSource m_audioSrc;
     // Mask in use
     private PlayerMask m_currentMask = PlayerMask.None;
 
@@ -108,6 +110,8 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D PlayerRB { get { return m_rb; } }
     public bool IsWallJumping { get { return m_isWallJumping; } }
     public PlayerMask CurrentMask { get { return m_currentMask; } }
+    public AudioSource PlayerAudioSrc { get { return m_audioSrc; } }
+    public bool IsUsingMonkeyAbility { get { return m_usingMonkeyAbility; } }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -161,6 +165,7 @@ public class PlayerController : MonoBehaviour
         m_rb = GetComponent<Rigidbody2D>();
         m_rb.gravityScale = m_gravityScale;
         m_inputActions = new PlayerInputActions();
+        m_audioSrc = GetComponent<AudioSource>();
         SetUpStateMachine();
         SetUpInputActions();
     }
@@ -226,6 +231,7 @@ public class PlayerController : MonoBehaviour
                 if(selectPlatform != null)
                 {
                     m_canUseAbility = false;
+                    AudioManager.Instance.Play(m_audioSrc, "AxolotlVision");
                     if(m_currentPlatformVisibility == PlatformType.Type1)
                     {
                         m_currentPlatformVisibility = PlatformType.Type2;
@@ -329,9 +335,11 @@ public class PlayerController : MonoBehaviour
     public void Jumping()
     {
         float additionalJump = 0.0f;
+        //string audioStr = "NormalJump";
         if(m_usingMonkeyAbility)
         {
             additionalJump = m_monkeyJumpBoost;
+            //audioStr = "MonkeyJump";
         }
         float totalJumpForce = m_jumpForce + additionalJump;
 
@@ -349,6 +357,8 @@ public class PlayerController : MonoBehaviour
                                               m_wallJumpForce.y);
             AnimatorsSetTrigger("WallJump");
         }
+
+        //AudioManager.Instance.Play(m_audioSrc, audioStr);
     }
 
     public void Climbing()
@@ -367,6 +377,7 @@ public class PlayerController : MonoBehaviour
         m_canUseAbility = false;
 
         AnimatorsSetTrigger("Attack");
+        AudioManager.Instance.Play(m_audioSrc, "Attack");
     }
 
     public bool CheckClimbActivation()
@@ -438,6 +449,7 @@ public class PlayerController : MonoBehaviour
         GameObject currentMaskObj = m_maskGOList[(int)m_currentMask];
         m_currentSpriteRenderer = currentMaskObj.GetComponent<SpriteRenderer>();
         m_currentSpriteRenderer.enabled = true;
+        AudioManager.Instance.Play(m_audioSrc, "MaskChange");
     }
 
     public void AnimatorsSetBool(string name, bool active)
