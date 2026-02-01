@@ -5,8 +5,7 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         m_rb = GetComponent<Rigidbody2D>();
-        m_detectCollider = GetComponent<CircleCollider2D>();
-        m_detectCollider.radius = m_sightRange;
+        GetComponent<CircleCollider2D>().radius = m_attackRange;
         SetUpStateMachine();
     }
 
@@ -26,9 +25,12 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            print("found player");
             m_target = collision.transform;
         }
+        // if (collision.CompareTag("Attack"))
+        // {
+        //     gameObject.SetActive(false);
+        // }
     }
 
     // remove the target when the player exits the sight range.
@@ -56,7 +58,7 @@ public class EnemyController : MonoBehaviour
         Vector2 direction = (m_target.position - transform.position).normalized;
         RaycastHit2D hit = Physics2D.Raycast(transform.position,
                                              direction,
-                                             m_sightRange,
+                                             m_attackRange,
                                              ~m_enemyLayer);
 
         if (hit.collider && hit.collider.CompareTag("Player")) {
@@ -126,14 +128,19 @@ public class EnemyController : MonoBehaviour
     /// <returns>If there's ground in front of the enemy.</returns>
     public bool CheckForward()
     {
+        return Physics2D.Raycast(transform.position,
+                                 Vector2.right * m_direction,
+                                 m_forwardCheckDistance,
+                                 ~m_enemyLayer);
+        
+    }
+
+    public bool CheckDown()
+    {
         // get the point where the raycast will start depending on where the entity is looking towards
         Vector2 origin = transform.position;
         origin.x += m_forwardCheckDistance * m_direction;
-
-        return Physics2D.Raycast(origin,
-                                 Vector2.down,
-                                 m_downCheckDistance,
-                                 m_groundLayer);
+        return Physics2D.Raycast(origin, Vector2.down, m_forwardCheckDistance, m_groundLayer);
     }
 
     void SetUpStateMachine()
@@ -147,21 +154,54 @@ public class EnemyController : MonoBehaviour
         m_stateMachine.ChangeState("Move");
     }
 
+    /// <summary>
+    /// Get the time the attack state should last.
+    /// </summary>
+    /// <returns></returns>
+    public float GetAttackDuration() { return m_attackDuration; }
+
+    /// <summary>
+    /// Get the time the attack will take from start to hit.
+    /// </summary>
+    /// <returns></returns>
+    public float GetAttackDelay() { return m_attackDelay; }
+
+    /// <summary>
+    /// Get the elapsed attack time.
+    /// </summary>
+    /// <returns></returns>
+    public float GetAttackTime() { return m_attackTimer; }
+
+    /// <summary>
+    /// Count the attack time.
+    /// </summary>
+    public void TickAttackTime() { m_attackTimer += Time.deltaTime; }
+
+    /// <summary>
+    /// Reset the attack timer.
+    /// </summary>
+    public void ResetAttackTime() { m_attackTimer = 0.0f; }
+
     private Rigidbody2D m_rb = null;
     private Transform m_target = null;
-    private CircleCollider2D m_detectCollider = null;
     [HideInInspector] public bool m_isGrounded = false;
-    private float m_direction = 1f;
 
-    [SerializeField] private float m_sightRange;
-    [SerializeField] private float m_speed = 1f;
-    [SerializeField] private float m_forwardCheckDistance = 1f;
-    [SerializeField] private float m_downCheckDistance = 1f;
+    [Header("Attack parameters")]
+    [SerializeField] private float m_attackRange = 1.0f;
+    [SerializeField] private float m_attackDelay = 0.5f;
+    [SerializeField] private float m_attackDuration = 1.0f;
+    [SerializeField] private float m_attackTimer = 0.0f;
+    
+    [Header("Movement parameters")]
+    private float m_direction = 1f;
+    [SerializeField] private float m_speed = 1.0f;
+    [SerializeField] private float m_forwardCheckDistance = 1.0f;
+    [SerializeField] private float m_downCheckDistance = 1.0f;
 
 
     [Header("Grounded parameters")]
     [SerializeField] private Transform m_feet;
-    [SerializeField] private float m_groundCheckDist;
+    [SerializeField] private float m_groundCheckDist = 0.1f;
     [SerializeField] private LayerMask m_groundLayer;
     [SerializeField] private LayerMask m_enemyLayer;
 

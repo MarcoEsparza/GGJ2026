@@ -32,7 +32,8 @@ public class EnemyMoveState : IState
     //Method executed every frame for the current state.
     public void OnExecuteState()
     {
-        if (m_controller.m_isGrounded && !m_controller.CheckForward())
+        if (m_controller.m_isGrounded &&
+            (!m_controller.CheckDown() || m_controller.CheckForward()))
         {
             float dir = m_controller.GetDirection() * -1f;
             m_controller.SetDirection(dir);
@@ -41,6 +42,7 @@ public class EnemyMoveState : IState
                                                           180f, 0f);
         }
         m_controller.MoveForward();
+
         CheckStateConditions();
     }
 
@@ -54,7 +56,7 @@ public class EnemyMoveState : IState
     public void CheckStateConditions()
     {
         // if there is a target and the enemy is in line of sight of the target.
-        if (m_controller.GetTarget() && m_controller.InLineOfSight()) {
+        if (m_controller.GetTarget()) {
             m_stateMachine.ChangeState("Attack");
         }
     }
