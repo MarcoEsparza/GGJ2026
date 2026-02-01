@@ -1,3 +1,4 @@
+using Unity.Mathematics.Geometry;
 using UnityEngine;
 
 public class EnemyAttackState : IState
@@ -17,6 +18,24 @@ public class EnemyAttackState : IState
         set { m_owner = value; }
     }
 
+    void RotateToTarget()
+    {
+        if (!m_controller.GetTarget()) { return; }
+
+        Vector2 forwardEnemy = (Vector2.right * m_controller.GetDirection()).normalized;
+        Vector2 dir = (m_controller.GetTarget().transform.position -
+                      m_controller.transform.position).normalized;
+
+        float dot = Vector2.Dot(forwardEnemy, dir);
+
+        if (dot <= 0) {
+            m_controller.SetDirection(m_controller.GetDirection() * -1.0f);
+            m_controller.transform.rotation = Quaternion.Euler(0.0f,
+                                                               m_controller.GetDirection() > 0f ? 0f : 180f,
+                                                               0.0f);
+        }
+    }
+
     //Method executed when a state has been entered.
     public void OnStateEnter()
     {
@@ -28,6 +47,7 @@ public class EnemyAttackState : IState
     //Method executed every frame for the current state.
     public void OnExecuteState()
     {
+        RotateToTarget();
         m_controller.TickAttackTime();
         // if the attack timer is greater than the delay set for the attack to hit
         if (m_controller.GetAttackTime() > m_controller.GetAttackDelay()) {
@@ -49,7 +69,7 @@ public class EnemyAttackState : IState
     public void CheckStateConditions()
     {
         // if there is no longer a target or the target is out of sight
-        if ((!m_controller.GetTarget() || !m_controller.InLineOfSight()) ||
+        if (!m_controller.GetTarget() ||
             (m_controller.GetAttackTime() > m_controller.GetAttackDuration())) { // if attack time is greater than the attack duration.
             m_stateMachine.ChangeState("Move");
         }
