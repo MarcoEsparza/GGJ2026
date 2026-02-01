@@ -22,7 +22,8 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Instantiate(m_endUIPrefab);
+        GameObject ui = Instantiate(m_endUIPrefab);
+        ui.SetActive(false);
         m_times = new List<float>(new float[m_levelNames.Count]);
     }
 
