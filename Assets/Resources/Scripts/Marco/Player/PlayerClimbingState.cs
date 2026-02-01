@@ -29,6 +29,7 @@ public class PlayerClimbingState : IState
 
         Debug.Log("Enter Climb State");
         m_playerController.AnimatorsSetBool("Climb", true);
+        m_playerController.AnimatorsSetBool("Jump", false);
     }
 
     public void OnExecuteState()
@@ -36,6 +37,7 @@ public class PlayerClimbingState : IState
         CheckStateConditions();
         m_playerController.Climbing();
         //m_playerController.Jumping();
+        m_playerController.AnimatorsSetBool("Jump", false);
     }
 
     public void OnExitState()
@@ -53,8 +55,7 @@ public class PlayerClimbingState : IState
             m_stateMachine.ChangeState("Move");
             m_playerController.PlayerRB.linearVelocityY = 5.0f;
         }
-        else if(m_playerController.IsGrounded &&
-                !m_playerController.CheckClimbActivation() &&
+        else if(!m_playerController.CheckClimbActivation() &&
                 m_playerController.MovementInput.Equals(Vector2.zero))
         {
             m_stateMachine.ChangeState("Idle");

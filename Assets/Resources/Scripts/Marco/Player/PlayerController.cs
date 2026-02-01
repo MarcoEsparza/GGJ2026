@@ -181,7 +181,8 @@ public class PlayerController : MonoBehaviour
     {
         m_stateMachine.CurrentState.OnExecuteState();
 
-        if (m_movementInput.x < 0.0f && m_isLookingRight)
+        if(m_stateMachine.CurrentState.GetType() == typeof(PlayerClimbingState)) { }
+        else if (m_movementInput.x < 0.0f && m_isLookingRight)
         {
             // Flip to the left
             FlipAllSprites(true);
@@ -453,25 +454,25 @@ public class PlayerController : MonoBehaviour
 
     public void AnimatorsSetBool(string name, bool active)
     {
-        m_maskGOList[(int)PlayerMask.None].GetComponent<Animator>().SetBool(name, active);
-        m_maskGOList[(int)PlayerMask.Monkey].GetComponent<Animator>().SetBool(name, active);
-        m_maskGOList[(int)PlayerMask.Jaguar].GetComponent<Animator>().SetBool(name, active);
-        m_maskGOList[(int)PlayerMask.Axolotl].GetComponent<Animator>().SetBool(name, active);
+        for(int i = 0; i < m_maskGOList.Count; i++)
+        {
+            m_maskGOList[i].GetComponent<Animator>().SetBool(name, active);
+        }
     }
 
     public void AnimatorsSetTrigger(string name)
     {
-        m_maskGOList[(int)PlayerMask.None].GetComponent<Animator>().SetTrigger(name);
-        m_maskGOList[(int)PlayerMask.Monkey].GetComponent<Animator>().SetTrigger(name);
-        m_maskGOList[(int)PlayerMask.Jaguar].GetComponent<Animator>().SetTrigger(name);
-        m_maskGOList[(int)PlayerMask.Axolotl].GetComponent<Animator>().SetTrigger(name);
+        for (int i = 0; i < m_maskGOList.Count; i++)
+        {
+            m_maskGOList[i].GetComponent<Animator>().SetTrigger(name);
+        }
     }
 
     private void FlipAllSprites(bool flip)
     {
-        m_maskGOList[(int)PlayerMask.None].GetComponent<SpriteRenderer>().flipX = flip;
-        m_maskGOList[(int)PlayerMask.Monkey].GetComponent<SpriteRenderer>().flipX = flip;
-        m_maskGOList[(int)PlayerMask.Jaguar].GetComponent<SpriteRenderer>().flipX = flip;
-        m_maskGOList[(int)PlayerMask.Axolotl].GetComponent<SpriteRenderer>().flipX = flip;
+        for (int i = 0; i < m_maskGOList.Count; i++)
+        {
+            m_maskGOList[i].GetComponent<SpriteRenderer>().flipX = flip;
+        }
     }
 }
