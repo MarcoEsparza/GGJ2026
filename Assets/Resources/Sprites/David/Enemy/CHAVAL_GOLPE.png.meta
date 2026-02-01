@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 232752bbd84702744825474685817a96
+guid: 9d76a2538b883d147bf3d160c545d97f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3943065865623719460
-    second: Tile_Lava_0
+      213: -5261095056524217618
+    second: CHAVAL_GOLPE_0
+  - first:
+      213: -2510241269910574095
+    second: CHAVAL_GOLPE_1
+  - first:
+      213: -765111476852117826
+    second: CHAVAL_GOLPE_2
+  - first:
+      213: -4081566553280725863
+    second: CHAVAL_GOLPE_3
+  - first:
+      213: -7672718959480974196
+    second: CHAVAL_GOLPE_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +58,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,13 +112,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tile_Lava_0
+      name: CHAVAL_GOLPE_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 3
         y: 0
-        width: 160
-        height: 160
+        width: 113
+        height: 161
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +127,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cd1b7898c7a6749c0800000000000000
-      internalID: -3943065865623719460
+      spriteID: ee27f4aabe5dcf6b0800000000000000
+      internalID: -5261095056524217618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CHAVAL_GOLPE_1
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 0
+        width: 121
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fb64766dd4d92dd0800000000000000
+      internalID: -2510241269910574095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CHAVAL_GOLPE_2
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 0
+        width: 149
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebea7a06a27c165f0800000000000000
+      internalID: -765111476852117826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CHAVAL_GOLPE_3
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 0
+        width: 170
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99c369848dc5b57c0800000000000000
+      internalID: -4081566553280725863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CHAVAL_GOLPE_4
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 0
+        width: 121
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c845bb612c6058590800000000000000
+      internalID: -7672718959480974196
       vertices: []
       indices: 
       edges: []
@@ -125,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Tile_Lava_0: -3943065865623719460
+      CHAVAL_GOLPE_0: -5261095056524217618
+      CHAVAL_GOLPE_1: -2510241269910574095
+      CHAVAL_GOLPE_2: -765111476852117826
+      CHAVAL_GOLPE_3: -4081566553280725863
+      CHAVAL_GOLPE_4: -7672718959480974196
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

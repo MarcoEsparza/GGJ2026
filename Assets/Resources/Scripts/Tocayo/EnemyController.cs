@@ -27,10 +27,10 @@ public class EnemyController : MonoBehaviour
         {
             m_target = collision.transform;
         }
-        // if (collision.CompareTag("Attack"))
-        // {
-        //     gameObject.SetActive(false);
-        // }
+        if (collision.CompareTag("Attack"))
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     // remove the target when the player exits the sight range.
