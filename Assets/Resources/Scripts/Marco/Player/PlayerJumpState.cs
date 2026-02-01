@@ -43,6 +43,8 @@ public class PlayerJumpState : IState
         CheckStateConditions();
         m_playerController.Jumping();
         m_playerController.Movement();
+        m_playerController.AnimatorsSetBool("Jump", true);
+        m_playerController.AnimatorsSetBool("Move", false);
     }
 
     public void OnExitState()
