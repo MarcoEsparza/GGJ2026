@@ -13,7 +13,7 @@ public class LevelStructure : MonoBehaviour
     {
         if (CheckVictory()) {
             OnExit();
-            GameManager.Instance.NextLevel();
+            GameManager.Instance.EndLevel();
         }
     }
 
