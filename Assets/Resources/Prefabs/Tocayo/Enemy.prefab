@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   m_isGrounded: 0
-  m_attackRange: 1
+  m_attackRange: 2
   m_attackDelay: 1
   m_attackDuration: 2.5
   m_attackTimer: 0
