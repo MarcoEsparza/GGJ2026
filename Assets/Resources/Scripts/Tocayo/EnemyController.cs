@@ -196,7 +196,6 @@ public class EnemyController : MonoBehaviour
     private float m_direction = 1f;
     [SerializeField] private float m_speed = 1.0f;
     [SerializeField] private float m_forwardCheckDistance = 1.0f;
-    [SerializeField] private float m_downCheckDistance = 1.0f;
 
 
     [Header("Grounded parameters")]

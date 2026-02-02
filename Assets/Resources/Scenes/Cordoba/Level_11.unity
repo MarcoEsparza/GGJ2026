@@ -5310,6 +5310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39e67703a8fd7a44596ff10b19642e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  m_LevelCompleteCanvas: {fileID: 0}
   m_timer: 0
   m_times: []
   m_levelNames:
@@ -5606,6 +5607,120 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1001 &1106779916
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 25.152233
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2575475802892152578, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_Name
+      value: Cartel Ajolote
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+--- !u!1001 &1125304385
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 70.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 13.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2575475802892152578, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_Name
+      value: Cartel Ajolote (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
 --- !u!1001 &1128795041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19768,6 +19883,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1412978311096230662, guid: f51574d4016fff74e9c3f9b01f2569b2, type: 3}
   m_PrefabInstance: {fileID: 1238269210}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1263262879
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 121
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2575475802892152578, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_Name
+      value: Cartel Ajolote (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
 --- !u!1001 &1276602790
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24807,3 +24979,6 @@ SceneRoots:
   - {fileID: 1804930498}
   - {fileID: 839008556}
   - {fileID: 1128795041}
+  - {fileID: 1106779916}
+  - {fileID: 1125304385}
+  - {fileID: 1263262879}

@@ -5720,6 +5720,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5939004852021340206, guid: e111785da821e5340850baf758ebb646, type: 3}
   m_PrefabInstance: {fileID: 1363358691}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1400240294
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 25.143541
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.319731
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268855774212959960, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2575475802892152578, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
+      propertyPath: m_Name
+      value: Cartel Ajolote
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6aaf9059699f2484983b35bcadb0fcd7, type: 3}
 --- !u!1001 &1437444479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6206,6 +6263,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1412978311096230662, guid: f51574d4016fff74e9c3f9b01f2569b2, type: 3}
   m_PrefabInstance: {fileID: 1656489227}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1742684363
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1742684365}
+  - component: {fileID: 1742684364}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1742684364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742684363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39e67703a8fd7a44596ff10b19642e11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  m_LevelCompleteCanvas: {fileID: 0}
+  m_timer: 0
+  m_times: []
+  m_levelNames:
+  - Tut_Level_4
+--- !u!4 &1742684365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742684363}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28.46929, y: -9.80692, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1747549624 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8218364238158852372, guid: 86bbbc06f6728284c87c3ca6ee9cc4d3, type: 3}
@@ -12883,3 +12989,5 @@ SceneRoots:
   - {fileID: 533125369}
   - {fileID: 362116408}
   - {fileID: 1437444479}
+  - {fileID: 1400240294}
+  - {fileID: 1742684365}
