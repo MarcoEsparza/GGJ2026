@@ -12,6 +12,7 @@ public class LevelStructure : MonoBehaviour
     void Update()
     {
         if (CheckVictory()) {
+            print("Llegue al final");
             OnExit();
             GameManager.Instance.EndLevel();
         }

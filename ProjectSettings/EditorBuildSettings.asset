@@ -44,6 +44,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/David/Tut_Level_4.unity
     guid: 0be786b15bcc256468cd6cf8753be15d
+  - enabled: 1
+    path: Assets/Resources/Scenes/David/Game Completed.unity
+    guid: f67e9f196c8d18346835aa2d00646e05
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

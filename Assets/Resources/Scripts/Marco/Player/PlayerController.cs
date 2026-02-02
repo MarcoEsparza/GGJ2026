@@ -167,13 +167,15 @@ public class PlayerController : MonoBehaviour
         m_audioSrc = GetComponent<AudioSource>();
         SetUpStateMachine();
         SetUpInputActions();
+        GameObject currentMaskObj = m_maskGOList[(int)PlayerMask.None];
+        m_currentSpriteRenderer = currentMaskObj.GetComponent<SpriteRenderer>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GameObject currentMaskObj = m_maskGOList[(int)PlayerMask.None];
-        m_currentSpriteRenderer = currentMaskObj.GetComponent<SpriteRenderer>();
+        
+        
     }
 
     // Update is called once per frame
@@ -445,6 +447,7 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateMaskVariables()
     {
+        if(m_currentSpriteRenderer == null) { return; }
         m_currentSpriteRenderer.enabled = false;
         GameObject currentMaskObj = m_maskGOList[(int)m_currentMask];
         m_currentSpriteRenderer = currentMaskObj.GetComponent<SpriteRenderer>();

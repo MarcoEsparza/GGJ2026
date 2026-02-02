@@ -19,16 +19,22 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private bool m_LevelFinish = false;
+    public bool LevelFinish { get { return m_LevelFinish; } set { m_LevelFinish = value; } }
+    private float m_SetTimeLevelFinish;
+    public float SetTimeLevelFinish { get { return m_SetTimeLevelFinish; } }
+
+    [SerializeField] private GameObject m_LevelCompleteCanvas;
+
+    private GameObject m_LevelCReference;
+
     void Start()
     {
-        m_endUI.SetActive(false);
         m_times = new List<float>(new float[m_levelNames.Count]);
     }
-
-    // Update is called once per frame
     void Update()
     {
+        print(m_LevelFinish);
         m_timer += Time.deltaTime;
     }
 
@@ -37,15 +43,24 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void EndLevel()
     {
-        Time.timeScale = 0.0f;
-        m_endUI.SetActive(true);
+        if (m_LevelCReference == null)
+        {
+            m_SetTimeLevelFinish = m_timer;
+            m_LevelCReference = Instantiate(m_LevelCompleteCanvas);
+            //Time.timeScale = 0.0f;
+        }
+        m_LevelFinish = true;
     }
 
     // Reset the currently selected level.
     public void ResetLevel()
     {
+        //Time.timeScale = 1.0f;
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
+        //m_endUI.SetActive(false);
+        //Destroy(m_LevelCReference);
+        m_LevelFinish = false;
     }
 
     /// <summary>
@@ -53,8 +68,11 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void NextLevel()
     {
-        m_endUI.SetActive(false);
-        Time.timeScale = 1.0f;
+        //m_endUI.SetActive(false);
+        Destroy(m_LevelCReference);
+
+        //Time.timeScale = 1.0f;
+
         // if the time can be counted
         if (m_levelIndex <= m_times.Count - 1) {
             m_times[m_levelIndex] = m_timer;
@@ -70,6 +88,7 @@ public class GameManager : MonoBehaviour
 
         string lvlName = m_levelNames[m_levelIndex];
         SceneManager.LoadScene(lvlName);
+        m_LevelFinish = false;
     }
 
     /// <summary>
@@ -85,7 +104,4 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float m_timer;
     [SerializeField] private List<float> m_times;
     [SerializeField] private List<string> m_levelNames;
-
-    [Header("UI Elements")]
-    [SerializeField] private GameObject m_endUI;
 }
